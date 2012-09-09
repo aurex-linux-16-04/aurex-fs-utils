@@ -1,0 +1,53 @@
+#!/bin/sh
+# -------
+# File:        aurex-umount
+# Description: Allow non-root users to umount filesystem in home dir or
+#              other required mount points
+# Author:      Luis Antonio Garcia Gisbert <luisgg@gmail.com> 
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along 
+# with this program; if not, write to the Free Software Foundation, Inc., 
+# 51 Franklin St, Fifth Floor, Boston MA 02110-1301 USA
+# --------
+
+
+die(){
+	echo "$1" >&2
+	exit 1
+}
+
+MOUNT_POINT="$1"
+USER_ID=$(id -u)
+[ "$MOUNT_POINT" -a -d "$MOUNT_POINT" ] || die "Usage: $(basename "$0") MOUNT_POINT"
+MOUNT_POINT="$(echo "${MOUNT_POINT}/" |tr -s "/")"
+rc=0
+[ $(id -u) -eq 0 ] || die "root privileges required"
+if [ "$SUDO_USER" ] ; then
+	# non root user running under sudo
+	# allow umount only under configured dirs
+	HOME_DIR="$(getent passwd $SUDO_USER |cut -f 6 -d :)"
+	[ "$HOME_DIR" ] || die "$SUDO_USER is not a valid user"
+	ls -1 /etc/aurex-fs-utils/umount.d/ |while read l; do
+		L="$(echo "${l}/" |sed -e "s%_@_HOME_@_%$HOME_DIR%g" |tr -s "/")"
+		if echo "$MOUNT_POINT" |grep -q "^$L" ; then
+			# ok, lets go for umount ...
+			umount "$MOUNT_POINT" || rc=$?
+			exit $rc
+		fi
+	done
+else
+	# not running under sudo
+	umount "$MOUNT_POINT" || rc=$?
+fi
+exit $rc
+
