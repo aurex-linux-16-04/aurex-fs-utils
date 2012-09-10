@@ -38,12 +38,13 @@ if [ "$SUDO_USER" ] ; then
 	HOME_DIR="$(getent passwd $SUDO_USER |cut -f 6 -d :)"
 	[ "$HOME_DIR" ] || die "$SUDO_USER is not a valid user"
 	ls -1 /etc/aurex-fs-utils/umount.d/ |while read l; do
-		L="$(echo "${l}/" |sed -e "s%_@_HOME_@_%$HOME_DIR%g" |tr -s "/")"
-		if echo "$MOUNT_POINT" |grep -q "^$L" ; then
-			# ok, lets go for umount ...
-			umount "$MOUNT_POINT" || rc=$?
-			exit $rc
-		fi
+		sed -ne "\%^/%{s%~%$HOME_DIR%g;s%[[:blank:]]*$%/%;p}" "/etc/aurex-fs-utils/umount.d/${l}" |tr -s "/" |while read L; do
+			if echo "$MOUNT_POINT" |grep -q "^$L" ; then
+				# ok, lets go for umount ...
+				umount "$MOUNT_POINT" || rc=$?
+				exit $rc
+			fi
+		done
 	done
 else
 	# not running under sudo
