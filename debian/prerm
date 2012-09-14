@@ -19,7 +19,7 @@ set -e
 
 case "$1" in
     remove|upgrade|deconfigure)
-	rm -f /etc/sudoers.d/10_aurex_fs
+	rm -f /etc/sudoers.d/90_aurex_fs
     ;;
 
     failed-upgrade)
