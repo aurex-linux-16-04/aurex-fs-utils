@@ -20,5 +20,7 @@
 # --------
 
 rc=0
-sudo /usr/sbin/aurex-umount "$@" || rc=$?
+UMOUNT_CMD="umount"
+[ $(id -u) -eq 0 ] || UMOUNT_CMD="/usr/sbin/aurex-umount"
+sudo $UMOUNT_CMD "$@" || rc=$?
 exit $rc
