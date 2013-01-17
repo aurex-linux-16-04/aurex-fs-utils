@@ -1,3 +1,9 @@
+aurex-fs-utils (0.5) precise; urgency=low
+
+  * Added davfs2 as depends
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Thu, 17 Jan 2013 08:10:45 +0100
+
 aurex-fs-utils (0.4) precise; urgency=low
 
   * Fixed smbumount when run as root (mdm!!!!)

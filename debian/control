@@ -7,7 +7,7 @@ Standards-Version: 3.9.3
 
 Package: aurex-fs-utils
 Architecture: all
-Depends: ${misc:Depends}, sudo, nfs-common, smbclient, smbfs, xfsprogs, reiserfsprogs, reiser4progs, jfsutils, ntfsprogs, dosfstools, dmraid, dmsetup
+Depends: ${misc:Depends}, sudo, nfs-common, smbclient, smbfs, xfsprogs, reiserfsprogs, reiser4progs, jfsutils, ntfsprogs, dosfstools, davfs2, dmraid, dmsetup
 Conflicts: smbfs (<< 2:4.0-1)
 Description: aurex filesystem related tools
  The package installs all the aurex required filesystem utilities, the
