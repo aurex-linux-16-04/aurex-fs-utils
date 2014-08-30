@@ -1,3 +1,9 @@
+aurex-fs-utils (0.7) trusty; urgency=medium
+
+  * Replace obsolete package ntfsprogs with ntfs-3g
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Sat, 30 Aug 2014 17:43:02 +0200
+
 aurex-fs-utils (0.6) trusty; urgency=medium
 
   * Rebuild for aurex 14.04 trusty
