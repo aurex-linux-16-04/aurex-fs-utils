@@ -7,8 +7,8 @@ Standards-Version: 3.9.3
 
 Package: aurex-fs-utils
 Architecture: all
-Depends: ${misc:Depends}, sudo, nfs-common, smbclient, smbfs, xfsprogs, reiserfsprogs, reiser4progs, jfsutils, ntfsprogs, dosfstools, davfs2, dmraid, dmsetup
-Conflicts: smbfs (<< 2:4.0-1)
+Depends: ${misc:Depends}, sudo, nfs-common, smbclient, cifs-utils, xfsprogs, reiserfsprogs, reiser4progs, jfsutils, ntfsprogs, dosfstools, davfs2, dmraid, dmsetup, glusterfs-client
+Conflicts: smbfs
 Description: aurex filesystem related tools
  The package installs all the aurex required filesystem utilities, the
  aurex-mount and aurex-umount scripts, and a replacement for smbumount.

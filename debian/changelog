@@ -1,3 +1,10 @@
+aurex-fs-utils (0.6) trusty; urgency=medium
+
+  * Rebuild for aurex 14.04 trusty
+  * Added a transitional replacement for smbmount
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Sat, 30 Aug 2014 16:31:33 +0200
+
 aurex-fs-utils (0.5) precise; urgency=low
 
   * Added davfs2 as depends
