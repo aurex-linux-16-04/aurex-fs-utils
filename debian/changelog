@@ -1,3 +1,9 @@
+aurex-fs-utils (0.8) xenial; urgency=medium
+
+  * Rebuild for aurex 16.04 xenial
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Mon, 05 Sep 2016 02:17:19 +0200
+
 aurex-fs-utils (0.7) trusty; urgency=medium
 
   * Replace obsolete package ntfsprogs with ntfs-3g
