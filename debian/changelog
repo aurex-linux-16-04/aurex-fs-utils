@@ -1,3 +1,9 @@
+aurex-fs-utils (0.9) xenial; urgency=medium
+
+  * Aded attr package
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Wed, 07 Sep 2016 03:23:02 +0200
+
 aurex-fs-utils (0.8) xenial; urgency=medium
 
   * Rebuild for aurex 16.04 xenial
